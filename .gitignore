@@ -1,5 +1,7 @@
 refrences
+env
 __pycache__
-key.txt
+key.hex
 otp.key
 generate_key.py
+test.py

@@ -1,2 +1,5 @@
 refrences
 __pycache__
+key.txt
+otp.key
+generate_key.py

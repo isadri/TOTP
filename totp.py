@@ -9,12 +9,12 @@ class TOTP:
     """
 
     def __init__(self) -> None:
-        self.TIME_STEP = 30
-        self.initial_time = time.time()
+        self.time_steps: int = 30
+        self.initial_time: float = 0.0
 
     def generate(self, key: bytes) -> int:
         """
         Generate a TOTP value.
         """
-        nbr_time_steps = floor((time.time() - self.initial_time) / self.TIME_STEP)
-        return HOTP.generate(key, str(nbr_time_steps).encode())
+        nbr_time_steps = floor((time.time() - self.initial_time) / self.time_steps)
+        return HOTP.generate(key, nbr_time_steps)

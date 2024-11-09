@@ -8,11 +8,19 @@ class HOTP:
     """
 
     @classmethod
+    def int_to_bytes(cls, value: int) -> bytes:
+        """
+        convert value of type int to a value of type bytes.
+        """
+        return value.to_bytes((value.bit_length() + 7) // 8, 'big')
+
+    @classmethod
     def generate(cls, key: bytes, counter: int) -> int:
         """
         Return the number whose binary representation is s.
         """
-        hmac_result = hmac.new(key, bytes(counter), digestmod=sha1).digest()
+        hmac_result = hmac.new(key, cls.int_to_bytes(counter),
+                            digestmod=sha1).digest()
         offset = hmac_result[-1] & 0xf
         bin_code = ((hmac_result[offset] & 0x7f) << 24
                     | (hmac_result[offset + 1] & 0xff) << 16

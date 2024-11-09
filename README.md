@@ -16,3 +16,9 @@ opad = the byte 0x5c repeated 64 times.
 ```
 
 If the key is smaller than 64 bytes then we append zeros to the right of the key, if the key is longer than 64 bytes then the key is hashed using SHA-1.
+
+
+
+## TOTP Introduction
+
+TOTP is the time-based variant of the HOTP algorithm. The HOTP algorithm uses a counter as the moving factor in the computation, the TOTP algorithm replaces that counter with a value derived from a time refrence and a time step.

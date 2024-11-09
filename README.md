@@ -22,3 +22,12 @@ If the key is smaller than 64 bytes then we append zeros to the right of the key
 ## TOTP Introduction
 
 TOTP is the time-based variant of the HOTP algorithm. The HOTP algorithm uses a counter as the moving factor in the computation, the TOTP algorithm replaces that counter with a value derived from a time refrence and a time step.
+
+
+## Usage
+
+```bash
+python3 main.py [-h] [-g <filename>] [-k {otp.key}]
+```
+
+This program needs a hexadecimal key in order to generate the TOTP key. The program reads the hexadecimal key from a file

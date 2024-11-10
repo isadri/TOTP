@@ -32,7 +32,8 @@ class HOTP:
         convert secret to bytes, right padding with zeros if necessary.
         """
         missing_padding = len(secret) % 8
-        secret = secret.rjust(missing_padding, '=')
+        if missing_padding:
+            secret += '=' * (8 - missing_padding)
         return base64.b32decode(secret, casefold=True)
 
     @staticmethod

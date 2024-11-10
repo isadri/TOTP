@@ -21,7 +21,8 @@ def is_hex(key: str) -> bool:
     """
     check if the key contains only hexadecimal characters.
     """
-    return all(c in string.hexdigits for c in key)
+    chars = string.ascii_uppercase + '234567'
+    return all(c in chars for c in key)
 
 
 def get_key_from_file(filename: str) -> str:

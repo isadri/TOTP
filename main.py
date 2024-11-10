@@ -21,7 +21,7 @@ def is_hex(key: str) -> bool:
     """
     check if the key contains only hexadecimal characters.
     """
-    chars = string.ascii_uppercase + '234567'
+    chars = string.ascii_uppercase + '234567='
     return all(c in chars for c in key)
 
 

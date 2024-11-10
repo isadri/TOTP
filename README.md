@@ -1,6 +1,6 @@
 # TOTP
 
-This is an implementation of the Time-based One-Time Password (TOTP) algorithm. The TOTP is an algorithm that generate a one-time password (OTP) using current time as a source of uniqueness.
+This is an implementation of the Time-based One-Time Password (TOTP) algorithm. The TOTP is an algorithm that generates a one-time password (OTP) using current time as a source of uniqueness.
 
 It is considered as the time-based variant of the HMAC-based One-Time Password (HOTP) algorithm. In other word, TOTP replaces the counter with a value based on the current time:
 

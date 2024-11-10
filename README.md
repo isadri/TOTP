@@ -1,4 +1,4 @@
-# totp
+# TOTP
 
 ## Usage
 

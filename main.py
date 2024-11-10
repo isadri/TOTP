@@ -70,7 +70,7 @@ def generate_password(otp: TOTP) -> int:
     try:
         with open('otp.key', 'r', encoding='UTF-8') as f:
             key = f.read()
-            return otp.generate(key.encode())
+            return otp.generate(key)
     except (FileNotFoundError, PermissionError):
         print(f'usage: python3 {sys.argv[0]} [-h] [-g G] [-k {{otp.key}}]',
             file=sys.stderr)

@@ -12,7 +12,7 @@ T = ⌊(Current Unix Time - T0) / X⌋
 
 where
 * T0 is the Unix time to start counting time steps. T0 = 0 in our implementation.
-* X represents the time step in seconds. X = 30 is our implementation.
+* X represents the time step in seconds. X = 30 in our implementation.
 
 
 ## Usage

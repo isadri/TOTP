@@ -42,5 +42,5 @@ The key will be changed after every 30 seconds. So if you wait 30 seconds or mor
 
 * [RFC 4226](https://datatracker.ietf.org/doc/html/rfc4226)
 * [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238)
+* [Keyed-hash Message Authentication Code](https://en.wikipedia.org/wiki/HMAC)
 * [Time-based ont-time password](https://en.wikipedia.org/wiki/Time-based_one-time_password)
-* [Keyed-has Message Authentication Code](https://en.wikipedia.org/wiki/HMAC)

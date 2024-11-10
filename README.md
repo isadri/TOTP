@@ -34,6 +34,6 @@ The key will be changed after every 30 seconds. So if you wait 30 seconds or mor
 
 ## References
 
-(RFC 4226)[https://datatracker.ietf.org/doc/html/rfc4226]
-(RFC 6238)[https://datatracker.ietf.org/doc/html/rfc6238]
-(Time-based ont-time password)[https://en.wikipedia.org/wiki/Time-based_one-time_password]
+[RFC 4226](https://datatracker.ietf.org/doc/html/rfc4226)
+[RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238)
+[Time-based ont-time password](https://en.wikipedia.org/wiki/Time-based_one-time_password)

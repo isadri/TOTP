@@ -1,8 +1,7 @@
 import calendar
 from datetime import datetime
-from math import floor
-import time
 from hotp import HOTP
+import time
 
 
 class TOTP:
@@ -13,9 +12,9 @@ class TOTP:
     def __init__(self) -> None:
         self.time_steps: int = 30
 
-    def generate(self, key: bytes) -> int:
+    def generate(self, key: str) -> str:
         """
         Generate a TOTP value.
         """
-        nbr = floor(calendar.timegm(datetime.now().utctimetuple()) / self.time_steps)
+        nbr = int(time.mktime(datetime.now().timetuple()) / self.time_steps)
         return HOTP.generate(key, nbr)

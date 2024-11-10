@@ -1,5 +1,14 @@
 # TOTP
 
+This is an implementation of the Time-based One-Time Password (TOTP) algorithm. The TOTP is an algorithm that generate a one-time password (OTP) using current time as a source of uniqueness.
+
+It is considered as the time-based variant of the HMAC-based One-Time Password (HOTP) algorithm. In other word, TOTP replaces the counter C with a value T based on the current time:
+
+```
+TOTP(K) = HOTP(K, T)
+```
+
+
 ## Usage
 
 ```bash
@@ -21,3 +30,10 @@ python3 main.py -k otp.key
 ```
 
 The key will be changed after every 30 seconds. So if you wait 30 seconds or more, a new temporary key will be generated.
+
+
+## References
+
+`RFC 4226 <https://datatracker.ietf.org/doc/html/rfc4226>`
+`RFC 6238 <https://datatracker.ietf.org/doc/html/rfc6238>`
+`Time-based ont-time password <https://en.wikipedia.org/wiki/Time-based_one-time_password>`

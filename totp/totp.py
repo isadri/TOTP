@@ -18,3 +18,9 @@ class TOTP:
         """
         nbr = int(time.mktime(datetime.now().timetuple()) / self.time_steps)
         return HOTP.generate(key, nbr)
+
+    def verify(self, secret: str, otp: str) -> bool:
+        """
+        check if the given otp is a valid OTP.
+        """
+        return self.generate(secret) == otp

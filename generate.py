@@ -1,6 +1,7 @@
 import argparse
 import qrcode
-import pyotp
+from PIL import Image
+from PIL.PngImagePlugin import PngImageFile
 import string
 import sys
 from totp.totp import TOTP
@@ -90,29 +91,52 @@ def create_uri(key: str) -> str:
     return uri
 
 
-def create_qrcode(otp: TOTP) -> None:
+def make_qrcode_image(uri: str) -> PngImageFile:
+    """
+    create an image for the qrcode and display it.
+    """
+    qr = qrcode.QRCode(
+        version=1,
+        box_size=5,
+        border=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H
+    )
+    qr.add_data(uri)
+    qr.make(fit=True)
+    qr_img = qr.make_image(fill_color='black', black_color='white')
+    qr_img.save('otp.png')
+    img = Image.open('otp.png')
+    img.show()
+    return img
+
+
+def create_qrcode() -> tuple[str, PngImageFile]:
     """
     Create a qrcode.
     """
     try:
         with open('otp.key', 'r', encoding='UTF-8') as f:
-            key = f.read()
-            qr = qrcode.QRCode(version=1,
-                            box_size=5,
-                            border=1,
-                            error_correction=qrcode.constants.ERROR_CORRECT_H)
-            uri = create_uri(key)
-            qr.add_data(uri)
-            qr.make(fit=True)
-            img = qr.make_image(fill_color='black', black_color='white')
-            img.save('otp.png')
-            return otp.generate(key)
+            secret = f.read()
+            uri = create_uri(secret)
+            img = make_qrcode_image(uri)
+            return secret, img
     except (FileNotFoundError, PermissionError):
         print(f'usage: python3 {sys.argv[0]} [-h] [-g G] [-k {{otp.key}}]',
             file=sys.stderr)
         print(f"{sys.argv[0]}: error: argument -g: can't open 'otp.key'",
             file=sys.stderr)
         sys.exit(1)
+
+
+def verfiy_otp(secret, otp) -> None:
+    """
+    verify if the given otp of the given secret is valid.
+    """
+    user_otp = input('Enter the otp: ')
+    if otp.verify(secret, user_otp):
+        print('Valid')
+    else:
+        print('Not Valid, try after some seconds.')
 
 
 def main() -> None:
@@ -123,10 +147,12 @@ def main() -> None:
 
     args = parse_args()
     if args.g:
-        key = get_key_from_file(args.g)
-        store_key(key)
+        secret = get_key_from_file(args.g)
+        store_key(secret)
     if args.k:
-        print(create_qrcode(otp))
+        secret, img = create_qrcode()
+        verfiy_otp(secret, otp)
+        img.close()
 
 
 if __name__ == '__main__':

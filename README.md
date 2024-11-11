@@ -44,9 +44,56 @@ python3 generate.py -k otp.key
 The key will be changed after every 30 seconds. So if you wait 30 seconds or more, a new temporary key will be generated.
 
 
+### URI string format
+
+`otpauth://TYPE/LABEL?PARAMETERS`
+
+
+#### Scheme
+
+Each URI begins with a scheme name that refers to a specification for assigning identifiers within that scheme. For example, `otpauth` is used by Authenticator apps to generate one-time passcodes using OATH.
+
+The otpauth:// URI scheme was originally formalised by Google.
+
+
+#### TYPE
+
+The TYPE is either __hotp__ or __totp__ and is needed to distinguish whether the credential will be used for counter-based HOTP or for time-based TOTP
+
+
+#### LABEL
+
+The label is used to identify which account a credential is associated with. It also serves as the unique identifier for the credential itsel.
+
+The label is created from:
+
+* Issuer: An optional string value indicating the provider or service this account is associated with.
+* Account name: A URI-encoded string that usually is the user's email address.
+
+It is formed as "Issuer:Account" when both parameters are present. More details [here](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html).
+
+
+#### Secret
+
+The secret is provided to the user in the QR code, this secret key is needef for one-time password generation.
+
+
+#### Digits
+
+The number of digits in a one-time password (OTP).
+
+
+#### Period
+
+Period it is only used if the type is TOTP.
+
+The period parameter defines a validity period in seconds for the TOTP code.
+
+
 ## References
 
 * [RFC 4226](https://datatracker.ietf.org/doc/html/rfc4226)
 * [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238)
 * [Keyed-hash Message Authentication Code](https://en.wikipedia.org/wiki/HMAC)
 * [Time-based ont-time password](https://en.wikipedia.org/wiki/Time-based_one-time_password)
+* [URI string format](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html)

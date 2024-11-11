@@ -7,3 +7,5 @@ generate_key.py
 test.py
 Totp.java
 Totp.class
+qrcode.py
+img.*

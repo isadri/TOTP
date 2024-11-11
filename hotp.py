@@ -29,7 +29,8 @@ class HOTP:
     @staticmethod
     def byte_secret(secret: str) -> bytes:
         """
-        convert secret to bytes, right padding with zeros if necessary.
+        convert secret to bytes, padding with = if necessary and decode
+        the result.
         """
         missing_padding = len(secret) % 8
         if missing_padding:
@@ -39,7 +40,7 @@ class HOTP:
     @staticmethod
     def int_to_bytes(value: int) -> bytes:
         """
-        convert value of type int to a value of type bytes.
+        convert the int value to bytes value.
         """
         text = bytearray()
         while value:

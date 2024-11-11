@@ -1,4 +1,6 @@
 import argparse
+import qrcode
+import pyotp
 import string
 import sys
 from totp.totp import TOTP
@@ -71,6 +73,34 @@ def generate_password(otp: TOTP) -> int:
     try:
         with open('otp.key', 'r', encoding='UTF-8') as f:
             key = f.read()
+            #img = qrcode.make(key)
+            #img.save('otp.png')
+            return otp.generate(key)
+    except (FileNotFoundError, PermissionError):
+        print(f'usage: python3 {sys.argv[0]} [-h] [-g G] [-k {{otp.key}}]',
+            file=sys.stderr)
+        print(f"{sys.argv[0]}: error: argument -g: can't open 'otp.key'",
+            file=sys.stderr)
+        sys.exit(1)
+
+
+def create_qrcode(otp: TOTP) -> None:
+    """
+    Create a qrcode.
+    """
+    try:
+        with open('otp.key', 'r', encoding='UTF-8') as f:
+            key = f.read()
+            qr = qrcode.QRCode(version=1,
+                            box_size=5,
+                            border=1,
+                            error_correction=qrcode.constants.ERROR_CORRECT_H)
+            totp = pyotp.TOTP(key)
+            uri = totp.provisioning_uri(name='isadri', issuer_name='TOTP')
+            qr.add_data(uri)
+            qr.make(fit=True)
+            img = qr.make_image(fill_color='black', black_color='white')
+            img.save('otp.png')
             return otp.generate(key)
     except (FileNotFoundError, PermissionError):
         print(f'usage: python3 {sys.argv[0]} [-h] [-g G] [-k {{otp.key}}]',
@@ -91,7 +121,7 @@ def main() -> None:
         key = get_key_from_file(args.g)
         store_key(key)
     if args.k:
-        print(generate_password(otp))
+        print(create_qrcode(otp))
 
 
 if __name__ == '__main__':

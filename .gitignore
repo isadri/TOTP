@@ -2,7 +2,7 @@ refrences
 env
 __pycache__
 key.hex
-otp.key
+otp.*
 generate_key.py
 test.py
 Totp.java

@@ -2,9 +2,9 @@
 
 This is an implementation of the Time-based One-Time Password (TOTP) algorithm. The TOTP is an algorithm that generates a one-time password (OTP) using current time as a source of uniqueness.
 
-It is considered as the time-based variant of the HMAC-based One-Time Password (HOTP) algorithm. In other word, TOTP replaces the counter with a value based on the current time:
+It is considered as the time-based variant of the HMAC-based One-Time Password (HOTP) algorithm. In other words, TOTP replaces the counter with a value based on the current time:
 
-TOTP is defined as `TOTP(K) = HOTP(K, T)`, where K is the key used to generate the OTP value and T is an integer and represents the number of time steps between the initial counter time T0 and the current Unix time. T is defined as follows
+TOTP is defined as `TOTP(K) = HOTP(K, T)`, where K is the secret key used to generate the OTP value and T is an integer and represents the number of time steps between the initial counter time T0 and the current Unix time. T is defined as follows
 
 ```
 T = ⌊(Current Unix Time - T0) / X⌋

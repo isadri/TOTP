@@ -46,10 +46,3 @@ class HOTP:
             text.append(value & 0xff)
             value >>= 8
         return bytes(bytearray(reversed(text)).rjust(8, b'\0'))
-
-    @staticmethod
-    def hex_str_to_bytes(hex_value: str) -> bytes:
-        """
-        convert hex value to a bytes value.
-        """
-        return bytes.fromhex(hex_value)

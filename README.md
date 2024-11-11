@@ -15,7 +15,7 @@ where
 * X represents the time step in seconds. X = 30 in our implementation.
 
 
-The base32 encoding/decoding is used for the generated key. This is because base32 is used to deliver the secret key in a human readable form.
+The base32 encoding/decoding is used for generating the key. This is because base32 is used to deliver the secret key in a human readable form.
 
 
 ## Usage

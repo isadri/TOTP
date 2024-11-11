@@ -12,7 +12,7 @@ T = ⌊(Current Unix Time - T0) / X⌋
 
 where
 * T0 is the Unix time to start counting time steps. T0 = 0 in our implementation.
-* X represents the time step in seconds. X = 30 in our implementation.
+* X represents the time step in seconds. 30 is the default value in our implementation and it can be modified.
 
 
 The base32 encoding/decoding is used for generating the key. This is because base32 is used to deliver the secret key in a human readable form.

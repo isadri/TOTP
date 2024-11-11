@@ -1,5 +1,5 @@
 from datetime import datetime
-from hotp import HOTP
+from .hotp import HOTP
 import time
 from typing import Optional
 

@@ -1,7 +1,7 @@
 import argparse
 import string
 import sys
-from totp import TOTP
+from totp.totp import TOTP
 
 
 def parse_args() -> argparse.Namespace:

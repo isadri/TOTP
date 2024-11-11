@@ -18,7 +18,7 @@ where
 The base32 encoding/decoding is used for generating the key. This is because base32 is used to deliver the secret key in a human readable form.
 
 
-The implementation follows the TOTP algorithm requirements as mentioned in (RFC 6238)[https://datatracker.ietf.org/doc/html/rfc6238]
+The implementation follows the TOTP algorithm requirements as mentioned in [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238)
 
 
 ## Usage

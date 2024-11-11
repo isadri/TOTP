@@ -73,8 +73,6 @@ def generate_password(otp: TOTP) -> int:
     try:
         with open('otp.key', 'r', encoding='UTF-8') as f:
             key = f.read()
-            #img = qrcode.make(key)
-            #img.save('otp.png')
             return otp.generate(key)
     except (FileNotFoundError, PermissionError):
         print(f'usage: python3 {sys.argv[0]} [-h] [-g G] [-k {{otp.key}}]',
@@ -82,6 +80,14 @@ def generate_password(otp: TOTP) -> int:
         print(f"{sys.argv[0]}: error: argument -g: can't open 'otp.key'",
             file=sys.stderr)
         sys.exit(1)
+
+
+def create_uri(key: str) -> str:
+    """
+    create a uri to add to qrcode
+    """
+    uri = f'otpauth://totp/TOTP:isadri?secret={key}&issuer=TOTP&digits=6&period=30'
+    return uri
 
 
 def create_qrcode(otp: TOTP) -> None:
@@ -95,8 +101,7 @@ def create_qrcode(otp: TOTP) -> None:
                             box_size=5,
                             border=1,
                             error_correction=qrcode.constants.ERROR_CORRECT_H)
-            totp = pyotp.TOTP(key)
-            uri = totp.provisioning_uri(name='isadri', issuer_name='TOTP')
+            uri = create_uri(key)
             qr.add_data(uri)
             qr.make(fit=True)
             img = qr.make_image(fill_color='black', black_color='white')

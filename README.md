@@ -23,6 +23,27 @@ The implementation follows the TOTP algorithm requirements as mentioned in (RFC 
 
 ## Usage
 
+Create a virtual environment using
+
+```bash
+python3.{your version} -m venv env
+```
+
+Then, activate the virtual environment
+
+```bash
+source env/bin/activate
+```
+
+Install the dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Now, you can go and generate some keys.
+
+
 ```bash
 python3 generate.py [-h] [-g <filename>] [-k {otp.key}]
 ```
@@ -40,6 +61,8 @@ Then, if you want a new temporary key based on the above hexadecimal key, use th
 ```bash
 python3 generate.py -k otp.key
 ```
+
+This will pop up a windown containing the qr code of the OTP value. After that qr code (e.g., using Google Authenticator app) enter the 6 digits in the prompt given in the program. The program will verify if the value you typed is valid or not.
 
 The key will be changed after every 30 seconds. So if you wait 30 seconds or more, a new temporary key will be generated.
 

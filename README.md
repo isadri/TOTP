@@ -62,56 +62,9 @@ Then, if you want a new temporary key based on the above hexadecimal key, use th
 python3 generate.py -k otp.key
 ```
 
-This will pop up a windown containing the qr code of the OTP value. After that qr code (e.g., using Google Authenticator app) enter the 6 digits in the prompt given in the program. The program will verify if the value you typed is valid or not.
+This will pop up a windown containing the qr code of the OTP value. After scanning that qr code (e.g., using Google Authenticator app) enter the 6 digits in the prompt given in the program. The program will verify if the value you typed is valid or not.
 
 The key will be changed after every 30 seconds. So if you wait 30 seconds or more, a new temporary key will be generated.
-
-
-### URI string format
-
-`otpauth://TYPE/LABEL?PARAMETERS`
-
-
-#### Scheme
-
-Each URI begins with a scheme name that refers to a specification for assigning identifiers within that scheme. For example, `otpauth` is used by Authenticator apps to generate one-time passcodes using OATH.
-
-The otpauth:// URI scheme was originally formalised by Google.
-
-
-#### TYPE
-
-The TYPE is either __hotp__ or __totp__ and is needed to distinguish whether the credential will be used for counter-based HOTP or for time-based TOTP
-
-
-#### LABEL
-
-The label is used to identify which account a credential is associated with. It also serves as the unique identifier for the credential itsel.
-
-The label is created from:
-
-* Issuer: An optional string value indicating the provider or service this account is associated with.
-* Account name: A URI-encoded string that usually is the user's email address.
-
-It is formed as "Issuer:Account" when both parameters are present. More details [here](https://docs.yubico.com/yesdk/users-manual/application-oath/uri-string-format.html).
-
-
-#### Secret
-
-The secret is provided to the user in the QR code, this secret key is needef for one-time password generation.
-
-
-#### Digits
-
-The number of digits in a one-time password (OTP).
-
-
-#### Period
-
-Period it is only used if the type is TOTP.
-
-The period parameter defines a validity period in seconds for the TOTP code.
-
 
 ## References
 

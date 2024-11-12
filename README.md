@@ -56,6 +56,10 @@ For example, suppose `key.hex` file contains the hexadecimal key `6EAACADEBBDE5C
 python3 generate.py -g key.hex
 ```
 
+> [!IMPORTANT]
+> The `key.hex` file must contains at least 64 base32 characters, those are [A-Z2-7=].
+
+
 Then, if you want a new temporary key based on the above hexadecimal key, use the following
 
 ```bash
